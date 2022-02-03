@@ -1,5 +1,5 @@
 # Odessos
-Atonomous sailboat
+Autonomous sailboat
 
 <br>
 Summary[EN]
