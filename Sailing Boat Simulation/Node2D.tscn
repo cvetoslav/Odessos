@@ -1,0 +1,179 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://warrow.png" type="Texture" id=1]
+[ext_resource path="res://KinematicBody2D.gd" type="Script" id=2]
+[ext_resource path="res://Node2D.gd" type="Script" id=3]
+[ext_resource path="res://lodka_otgore.png" type="Texture" id=4]
+[ext_resource path="res://sail.png" type="Texture" id=5]
+[ext_resource path="res://LineEdit.gd" type="Script" id=6]
+[ext_resource path="res://farrow.png" type="Texture" id=7]
+[ext_resource path="res://background.png" type="Texture" id=8]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.133333, 0.133333, 0.133333, 1 )
+corner_detail = 20
+
+[sub_resource type="Theme" id=3]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 0, 2.11893 )
+script = ExtResource( 3 )
+
+[node name="WindArrow" type="KinematicBody2D" parent="."]
+position = Vector2( 1403.15, 48.8126 )
+rotation = 3.14159
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="WindArrow"]
+texture = ExtResource( 1 )
+flip_v = true
+
+[node name="FlowArrow" type="KinematicBody2D" parent="."]
+position = Vector2( 1204.31, 48.8126 )
+rotation = 3.14159
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="FlowArrow"]
+texture = ExtResource( 7 )
+flip_v = true
+
+[node name="MainTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="WindDir" type="Label" parent="."]
+margin_left = 1454.1
+margin_top = 34.9126
+margin_right = 1494.1
+margin_bottom = 48.9126
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FlowDir" type="Label" parent="."]
+margin_left = 1256.31
+margin_top = 34.7826
+margin_right = 1300.31
+margin_bottom = 48.7826
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WindSpeed" type="Label" parent="."]
+margin_left = 1454.05
+margin_top = 57.7127
+margin_right = 1494.05
+margin_bottom = 71.7127
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FlowSpeed" type="Label" parent="."]
+margin_left = 1256.31
+margin_top = 57.7826
+margin_right = 1299.31
+margin_bottom = 71.7826
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SailBoat" type="KinematicBody2D" parent="."]
+position = Vector2( 801.261, 697.522 )
+scale = Vector2( 0.15, 0.15 )
+
+[node name="Hull" type="Sprite" parent="SailBoat"]
+texture = ExtResource( 4 )
+
+[node name="MainSail" type="Sprite" parent="SailBoat"]
+position = Vector2( 0, -155.833 )
+scale = Vector2( 1, 2.55149 )
+texture = ExtResource( 5 )
+offset = Vector2( 0, 65 )
+
+[node name="Jib" type="Sprite" parent="SailBoat"]
+position = Vector2( 0, -247 )
+scale = Vector2( 1, 1.06095 )
+texture = ExtResource( 5 )
+offset = Vector2( 0, 65 )
+
+[node name="Panel" type="Panel" parent="."]
+show_behind_parent = true
+light_mask = 0
+material = SubResource( 1 )
+margin_left = -1.05948
+margin_top = -5.2973
+margin_right = 38.9405
+margin_bottom = 34.7027
+rect_scale = Vector2( 38.6, 2.66547 )
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_left = 35.1558
+margin_top = 41.1024
+margin_right = 93.1558
+margin_bottom = 65.1024
+rect_scale = Vector2( 1.00039, 1.25911 )
+theme = SubResource( 3 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WeightLabel" type="Label" parent="."]
+margin_left = 38.3341
+margin_top = 23.0915
+margin_right = 87.3341
+margin_bottom = 37.0915
+text = "Weight:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 1423.54
+margin_top = 817.214
+margin_right = 1473.54
+margin_bottom = 837.214
+rect_scale = Vector2( 2.25173, 2.2721 )
+text = "START"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BVL" type="Label" parent="."]
+margin_left = 157.0
+margin_top = 22.0
+margin_right = 197.0
+margin_bottom = 36.0
+text = "Boat velocity:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BoatVelocityLabel" type="Label" parent="."]
+margin_left = 157.958
+margin_top = 42.1534
+margin_right = 197.958
+margin_bottom = 56.1534
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="Sprite" parent="."]
+position = Vector2( 771.524, 431.219 )
+scale = Vector2( 3.04202, 2.5813 )
+z_index = -2
+texture = ExtResource( 8 )
+[connection signal="timeout" from="MainTimer" to="." method="_on_MainTimer_timeout"]
+[connection signal="button_down" from="Button" to="." method="_on_Button_button_down"]
